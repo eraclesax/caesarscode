@@ -6,6 +6,7 @@ The usage follows the suggested instructions:
   sudo chmod +x path/to/caesar.sh
 3) Execute the script in the following way:
   path/to/caesar.sh key filename [-d | --decript]
+  
   Arguments:
   key -> mandatory argument. Positive integer 0 to Inf
   filename -> mandatory argument. Is the path to the file to encript/decript
