@@ -10,11 +10,16 @@ help()
 
 SHORT=d,h
 LONG=decript,help
+
+# This mechanism of getting the arguments is quite ugly, but i have to choose it for time
+# saving reasons. I'm not so good with bash scripts using options and arguments :/
+
 OPTS=$(getopt -a -n weather --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Count of arguments that are in short or long options
 
-# Verify that exist at least one argument
+# Verify that exist at least one argument (that's quite unusefool saw that the script lacks of more important
+# tests... but was included in the example i read this stuff from, so \_(-_-)_/ )
 
 if [ "$VALID_ARGUMENTS" -eq 0 ]; then
     help
@@ -51,7 +56,10 @@ key=$1;
 file=$2;
 
 # TODO: Add controls on mandatory keys
-# TODO: Add control on python version
+# TODO: Mute output for error on python version
 
-python3 caesar_function.py $key $file $decript
-
+{
+    python3 caesar_function.py $key $file $decript
+} || {
+    python caesar_function.py $key $file $decript
+}
