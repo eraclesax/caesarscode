@@ -6,11 +6,15 @@ help()
     exit 2
 }
 
+# Define short and long arguments
+
 SHORT=d,h
 LONG=decript,help
 OPTS=$(getopt -a -n weather --options $SHORT --longoptions $LONG -- "$@")
 
 VALID_ARGUMENTS=$# # Count of arguments that are in short or long options
+
+# Verify that exist at least one argument
 
 if [ "$VALID_ARGUMENTS" -eq 0 ]; then
     help
@@ -18,8 +22,8 @@ fi
 
 eval set -- "$OPTS"
 
+# Read arguments and give error if unexpected arguments are passed
 decript=0
-
 while :
 do
     case "$1" in
@@ -40,6 +44,8 @@ do
         ;;
     esac
 done
+
+# read non-keywords arguments
 
 key=$1;
 file=$2;
